@@ -19,29 +19,29 @@ nmap -p 1-65535 -sV -sS -vv -T1
 nmap -p 1-65535 -sV -sU -vv -T1
 
 name=script_report
-if [[ -e $name.ext ]] ; then
+if [[ -e $name.txt ]] ; then
   i=0
-  while [[ -e $name-$i.ext ]] ; do
+  while [[ -e $name-$i.txt ]] ; do
     let i++
   done
   name=$name-$i
 fi
-touch "$name".ext
+touch "$name".txt
 
-hostnamectl > "$name".ext
-pstree -a >> "$name".ext
-service --status-all >> "$name".ext
-ip addr >> "$name".ext
-ss -taulpe >> "$name".ext
-apt list --installed >> "$name".ext
-w >> "$name".ext
-last -xw >> "$name".ext
-ip route | grep default >> "$name".ext
-route -n >> "$name".ext
-nstat >> "$name".ext
-ss -s >> "$name".ext
-iptables -L -n -v >> "$name".ext
-nmap -sV -sS -v >> "$name".ext
-nmap -sV -sU -v  >> "$name".ext
-nmap -p 1-65535 -sV -sS -vv -T1 >> "$name".ext
-nmap -p 1-65535 -sV -sU -vv -T1 >> "$name".ext
+hostnamectl > "$name".txt
+pstree -a >> "$name".txt
+service --status-all >> "$name".txt
+ip addr >> "$name".txt
+ss -taulpe >> "$name".txt
+apt list --installed >> "$name".txt
+w >> "$name".txt
+last -xw >> "$name".txt
+ip route | grep default >> "$name".txt
+route -n >> "$name".txt
+nstat >> "$name".txt
+ss -s >> "$name".txt
+iptables -L -n -v >> "$name".txt
+nmap -sV -sS -v >> "$name".txt
+nmap -sV -sU -v  >> "$name".txt
+nmap -p 1-65535 -sV -sS -vv -T1 >> "$name".txt
+nmap -p 1-65535 -sV -sU -vv -T1 >> "$name".txt
