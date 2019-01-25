@@ -1,0 +1,47 @@
+#!/bin/bash
+
+hostnamectl
+pstree -a 
+service --status-all
+ip addr
+ss -taulpe
+apt list --installed
+w
+last -xw
+ip route | grep default
+route -n
+nstat
+ss -s
+iptables -L -n -v
+nmap -sV -sS -v
+nmap -sV -sU -v 
+nmap -p 1-65535 -sV -sS -vv -T1
+nmap -p 1-65535 -sV -sU -vv -T1
+
+name=script_report
+if [[ -e $name.ext ]] ; then
+  i=0
+  while [[ -e $name-$i.ext ]] ; do
+    let i++
+  done
+  name=$name-$i
+fi
+touch "$name".ext
+
+hostnamectl > "$name".ext
+pstree -a >> "$name".ext
+service --status-all >> "$name".ext
+ip addr >> "$name".ext
+ss -taulpe >> "$name".ext
+apt list --installed >> "$name".ext
+w >> "$name".ext
+last -xw >> "$name".ext
+ip route | grep default >> "$name".ext
+route -n >> "$name".ext
+nstat >> "$name".ext
+ss -s >> "$name".ext
+iptables -L -n -v >> "$name".ext
+nmap -sV -sS -v >> "$name".ext
+nmap -sV -sU -v  >> "$name".ext
+nmap -p 1-65535 -sV -sS -vv -T1 >> "$name".ext
+nmap -p 1-65535 -sV -sU -vv -T1 >> "$name".ext
